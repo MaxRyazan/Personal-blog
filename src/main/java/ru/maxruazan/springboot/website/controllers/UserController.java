@@ -31,4 +31,9 @@ public class UserController {
     userRepository.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }
