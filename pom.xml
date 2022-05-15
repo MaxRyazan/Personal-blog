@@ -13,8 +13,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>web-site</name>
 	<description>simple site on springboot</description>
+
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
+
+		<postgresql.version>42.2.8</postgresql.version>
 	</properties>
 
 	<dependencies>
@@ -56,6 +59,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
 		</dependency>
 	</dependencies>
 

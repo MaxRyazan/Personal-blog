@@ -29,6 +29,6 @@ public class UserController {
                              @RequestParam String password){
     User user = new User(username, password);
     userRepository.save(user);
-        return "redirect:/login";
+        return "redirect:/";
     }
 }

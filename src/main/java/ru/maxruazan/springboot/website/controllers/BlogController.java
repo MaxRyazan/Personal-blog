@@ -72,7 +72,7 @@ public class BlogController {
                               @RequestParam String title,
                               @RequestParam String anons,
                               @RequestParam String full_text) {
-        Post post = postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElse(null);
         post.setTitle(title);
         post.setAnons(anons);
         post.setFull_text(full_text);
@@ -82,7 +82,7 @@ public class BlogController {
 
     @GetMapping("/blog/{id}/remove")
     public String deletePost(@PathVariable long id) {
-        Post post = postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElse(null);
         postRepository.delete(post);
         return "redirect:/blog";
     }
