@@ -3,22 +3,20 @@ package ru.maxruazan.springboot.website.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.maxruazan.springboot.website.models.Post;
 import ru.maxruazan.springboot.website.repos.PostRepository;
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 
 @Controller
 public class BlogController {
     private PostRepository postRepository;
+
+    @GetMapping("/")
+    public String title() {
+        return "title";
+    }
+
 
     @Autowired
     public void setPostRepository(PostRepository postRepository) {
@@ -30,6 +28,11 @@ public class BlogController {
     Iterable<Post> posts = postRepository.findAll();
     model.addAttribute("posts" , posts);
         return "blog-main";
+    }
+
+    @GetMapping("/blog/about")
+    public String about() {
+        return "blog-about";
     }
 
     @GetMapping("/blog/add")

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:insert="blocks/head"><title></title></head>
+<header th:insert="blocks/header"></header>
+<body>
+
+
+<div class="container mt-5">
+    <h2>Регистрация</h2>
+    <form action="/user/new" method="post">
+        <input type="text" name="username" placeholder="Введите имя" class="form-control"><br>
+        <input type="text" name="password" placeholder="Введите пароль" class="form-control"><br>
+        <br><br>
+        <button type="submit" class="btn btn-success">Продолжить</button>
+        <input type="button" class="btn btn-success" value="Назад" onclick="history.back()">
+    </form>
+</div>
+<br>
+
+<br>
+<footer th:insert="blocks/footer"></footer>
+
+</body>
+</html>
