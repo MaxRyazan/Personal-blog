@@ -29,6 +29,11 @@ public class UserController {
                              @RequestParam String password){
     User user = new User(username, password);
     userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }

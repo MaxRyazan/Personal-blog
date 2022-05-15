@@ -17,13 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	private final DataSource dataSource;
 
 	private final AuthConfigImpl authConfig;
 
 	@Autowired
-	public SecurityConfiguration(DataSource dataSource, AuthConfigImpl authConfig) {
-		this.dataSource = dataSource;
+	public SecurityConfiguration(AuthConfigImpl authConfig) {
 		this.authConfig = authConfig;
 	}
 
@@ -39,6 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.csrf().disable()
 				.authorizeRequests()
 					.antMatchers("/").permitAll()
+				.antMatchers("/login", "/user/new").anonymous()
 					.anyRequest().authenticated()
 				.and()
 					.formLogin()
@@ -50,18 +49,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// @formatter:on
 	}
 
-//	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication()
-//				.withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER")
-//				.and()
-//				.withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
-//				.and()
-//				.withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
-//	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 }
