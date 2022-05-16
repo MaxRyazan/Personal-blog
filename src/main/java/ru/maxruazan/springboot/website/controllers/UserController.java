@@ -26,14 +26,35 @@ public class UserController {
 
     @PostMapping("/new")
     public String addNewUser(@RequestParam String username,
-                             @RequestParam String password){
-    User user = new User(username, password);
-    userRepository.save(user);
-        return "redirect:/login";
+                             @RequestParam String password) {
+        User user = new User(username, password);
+        User authUser = userRepository.findByEmail(username);
+        if (authUser == null) {
+            userRepository.save(user);
+             return   "redirect:/successes";
+        } else {
+            return   "redirect:/new";
+        }
     }
 
-    @GetMapping("/login")
+    @GetMapping("/successes")
     public String login(){
-        return "login";
+        return "user-successes";
+    }
+
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
+    @PostMapping("/test")
+    public String test(@RequestParam String email,
+                       @RequestParam String password) {
+        User user = userRepository.findByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            return "user-successes";
+        }
+        return "/error";
     }
 }
+
