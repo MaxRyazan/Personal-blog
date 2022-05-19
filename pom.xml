@@ -15,7 +15,7 @@
 	<description>simple site on springboot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 
 		<postgresql.version>42.2.8</postgresql.version>
 	</properties>

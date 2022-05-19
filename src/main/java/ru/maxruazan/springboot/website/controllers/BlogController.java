@@ -12,16 +12,16 @@ import ru.maxruazan.springboot.website.repos.PostRepository;
 public class BlogController {
     private PostRepository postRepository;
 
-    @GetMapping("/")
-    public String title() {
-        return "title";
-    }
-
-
     @Autowired
     public void setPostRepository(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
+
+    @GetMapping("/")
+    public String title() {
+        return "redirect:/blog";
+    }
+
 
     @GetMapping("/blog")
     public  String blogMain(Model model){
@@ -73,6 +73,7 @@ public class BlogController {
                               @RequestParam String anons,
                               @RequestParam String full_text) {
         Post post = postRepository.findById(id).orElse(null);
+        assert post != null;
         post.setTitle(title);
         post.setAnons(anons);
         post.setFull_text(full_text);
@@ -82,8 +83,7 @@ public class BlogController {
 
     @GetMapping("/blog/{id}/remove")
     public String deletePost(@PathVariable long id) {
-        Post post = postRepository.findById(id).orElse(null);
-        postRepository.delete(post);
+        postRepository.findById(id).ifPresent(post -> postRepository.delete(post));
         return "redirect:/blog";
     }
 }

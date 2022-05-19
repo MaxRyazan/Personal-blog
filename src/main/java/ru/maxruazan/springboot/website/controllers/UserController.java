@@ -1,6 +1,7 @@
 package ru.maxruazan.springboot.website.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,11 +13,13 @@ import ru.maxruazan.springboot.website.repos.UserRepository;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    UserRepository userRepository;
+   private final UserRepository userRepository;
+   private final BCryptPasswordEncoder encoder;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     @GetMapping("/new")
@@ -25,13 +28,13 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String addNewUser(@RequestParam String username,
+    public String addNewUser(@RequestParam String email,
                              @RequestParam String password) {
-        User user = new User(username, password);
-        User authUser = userRepository.findByEmail(username);
+        User user = new User(email, encoder.encode(password));
+        User authUser = userRepository.findByEmail(email);
         if (authUser == null) {
             userRepository.save(user);
-             return   "redirect:/successes";
+             return   "redirect:/user-successes";
         } else {
             return   "redirect:/new";
         }
@@ -43,18 +46,19 @@ public class UserController {
     }
 
 
-    @GetMapping("/test")
-    public String test(){
-        return "test";
+    @GetMapping("/registration")
+    public String registration(){
+        return "registration";
     }
-    @PostMapping("/test")
-    public String test(@RequestParam String email,
+
+    @PostMapping("/registration")
+    public String registration(@RequestParam String email,
                        @RequestParam String password) {
         User user = userRepository.findByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(encoder.encode(password))) {
             return "user-successes";
         }
-        return "/error";
+        return "/registration";
     }
 }
 
