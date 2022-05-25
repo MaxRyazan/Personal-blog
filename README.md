@@ -13,4 +13,8 @@ Add new post ? Click "Добавить статью" See this :
 Want to see more details and full-post-text? Click "Детальнее" :
 ![333](https://user-images.githubusercontent.com/97405800/169416517-fbd7fcf6-8887-4b62-817a-d6d61bb149c0.jpg)
 
-Next update soon. I will add roles and think about the concept of the admin branch.
+UPD:
+Added attributes to buttons (isAuthorize(), hasRole() etc) for more "user-friendly" interface.
+Added service class, extracted logic from controllers.
+Added some pages for convenience.
+Some visual fixes.
