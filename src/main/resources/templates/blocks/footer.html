@@ -1,10 +1,15 @@
 <div th:fragment="footer">
 <footer class="text-muted py-5">
+
+    <nav class="d-inline-flex mt-0 mt-md-3 ms-md-auto">
+        <h9 style="color: green" th:inline="text">[[${#httpServletRequest.getUserPrincipal}]]</h9>
+    </nav>
+
     <div class="container">
         <p class="float-end mb-1">
             <a href="#">Back to top</a>
         </p>
-        <p class="mb-1">Create with bootstrap by maxruazan</p>
+        <p class="mb-1">Create with bootstrap by maxryazan</p>
         <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.1/getting-started/introduction/">getting started guide</a>.</p>
     </div>
 </footer>

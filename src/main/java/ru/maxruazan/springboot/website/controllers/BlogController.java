@@ -2,10 +2,12 @@ package ru.maxruazan.springboot.website.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.maxruazan.springboot.website.models.Post;
+import ru.maxruazan.springboot.website.models.User;
 import ru.maxruazan.springboot.website.repos.PostRepository;
 
 
@@ -47,9 +49,12 @@ public class BlogController {
     @PostMapping("/blog/add")
     public String blogPostAdd(@RequestParam String title,
                               @RequestParam String anons,
-                              @RequestParam String full_text) {
-        Post post = new Post(title, anons, full_text);
-        postRepository.save(post);
+                              @RequestParam String full_text,
+                              @AuthenticationPrincipal User user) {
+        if(user.getRoles().toString().equals("USER")) {
+            Post post = new Post(title, anons, full_text);
+            postRepository.save(post);
+        }
         return "redirect:/blog";
     }
 
@@ -62,7 +67,7 @@ public class BlogController {
         return "blog-details";
     }
 
-    @PreAuthorize("hasRole('USER_ROLE') AND hasRole('ADMIN_ROLE')")
+    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
     @GetMapping("/blog/{id}/edit")
     public String editDetails(@PathVariable long id, Model model) {
         if(!postRepository.existsById(id)) {

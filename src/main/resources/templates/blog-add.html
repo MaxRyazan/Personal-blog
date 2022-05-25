@@ -4,13 +4,14 @@
 <body>
 <header th:insert="blocks/header"></header>
 
+<a th:if=" ">view</a>
 <div class="container mt-5">
     <h2>Добавление статьи</h2>
     <form name="f" th:action="@{/blog/add}" method="post">
             <input type="text" name="title" placeholder="Введите название статьи" class="form-control"><br>
             <input type="text" name="anons" placeholder="Описание статьи" class="form-control"><br>
             <textarea name="full_text" placeholder="Введите полный текст статьи" class="form-control"></textarea>
-        <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
+              <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
             <br><br>
             <button type="submit" class="btn btn-success">Добавить статью</button>
     </form>
