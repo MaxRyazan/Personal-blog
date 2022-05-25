@@ -5,7 +5,7 @@
 <header th:insert="blocks/header"></header>
 
 <div class="container mt-5" >
-<h1>Блог сайта</h1>
+<h1>Блог</h1>
     <div th:each="element : ${posts}" class="alert alert-info mt-2">
         <h3 th:text="${element.title}"></h3>
         <p th:text="${element.anons}"></p>

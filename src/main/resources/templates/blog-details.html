@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:insert="blocks/head"><title>Детали</title></head>
 <body>
 <header th:insert="blocks/header"></header>
@@ -8,9 +8,12 @@
     <div th:each="element : ${post}" class="alert alert-info mt-2">
         <h3 th:text="${element.title}"></h3>
         <p th:text="${element.full_text}"></p>
-        <p><b>Просмотры:</b> <span th:text="${element.views}"/></p>
+        <p><b>Просмотры:</b> <span th:text="${element.views}"></span></p>
+        <div sec:authorize="isAuthenticated()">
         <a th:href="'/blog/' + ${element.id} + '/edit'" class="btn btn-warning">Редактировать</a>
         <a th:href="'/blog/' + ${element.id} + '/remove'" class="btn btn-warning">Удалить</a>
+            </div>
+        <br>
         <input type="button" value="Назад" onclick="history.back()" class="btn btn-warning">
     </div>
 </div>
