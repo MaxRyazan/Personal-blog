@@ -1,6 +1,7 @@
 package ru.maxruazan.springboot.website.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,11 +36,14 @@ public class BlogController {
         return "blog-about";
     }
 
+
+    @PreAuthorize("hasRole('USER_ROLE') AND hasRole('ADMIN_ROLE')")
     @GetMapping("/blog/add")
     public  String blogAdd(){
         return "blog-add";
     }
 
+    @PreAuthorize("hasRole('USER_ROLE') AND hasRole('ADMIN_ROLE')")
     @PostMapping("/blog/add")
     public String blogPostAdd(@RequestParam String title,
                               @RequestParam String anons,
@@ -58,6 +62,7 @@ public class BlogController {
         return "blog-details";
     }
 
+    @PreAuthorize("hasRole('USER_ROLE') AND hasRole('ADMIN_ROLE')")
     @GetMapping("/blog/{id}/edit")
     public String editDetails(@PathVariable long id, Model model) {
         if(!postRepository.existsById(id)) {
@@ -66,6 +71,7 @@ public class BlogController {
         model.addAttribute("post", postRepository.findById(id).orElse(null));
         return "blog-edit";
     }
+
 
     @PostMapping("/blog/{id}/edit")
     public String blogPostEdit(@PathVariable long id,
@@ -81,6 +87,7 @@ public class BlogController {
         return "redirect:/blog";
     }
 
+    @PreAuthorize("hasRole('ADMIN_ROLE')")
     @GetMapping("/blog/{id}/remove")
     public String deletePost(@PathVariable long id) {
         postRepository.findById(id).ifPresent(post -> postRepository.delete(post));

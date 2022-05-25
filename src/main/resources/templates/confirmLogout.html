@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+<h1 th:inline="text">[[${#httpServletRequest.remoteUser}]] are you already leave?</h1>
+<form th:action="@{/user/logout}" method="post">
+    <input type="submit" value="Yes"/>
+    <input type="button" value="No, get back!" onclick="history.back()">
+    <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
+</form>
+</body>
+</html>
