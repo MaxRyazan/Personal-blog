@@ -4,6 +4,7 @@ Stack : Spring: Boot, MVC, Security.
 Bootstrap sample, Thymeleaf template engine, Html.
 Data Base - MySQL.
 Last update: Authorization and Registration was added.
+Last update: Roles, custom login/logout pages. A bit of javascript code.
 This is main page : 
 ![111](https://user-images.githubusercontent.com/97405800/169416315-3117f6fd-41af-4d4f-968b-13198a613dbc.jpg)
 
@@ -18,3 +19,6 @@ Added attributes to buttons (isAuthorize(), hasRole() etc) for more "user-friend
 Added service class, extracted logic from controllers.
 Added some pages for convenience.
 Some visual fixes.
+
+UPD:
+Added enum Role, added guest enter. Optimized class structure.
