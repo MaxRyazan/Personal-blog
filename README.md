@@ -2,8 +2,8 @@
 Personal blog creating with Bootstrap. Minimum front features.  
 Stack : Spring: Boot, MVC, Security. Bootstrap sample, Thymeleaf template engine, Html. Data Base - MySQL.  
 Next update: Admins table with users, roles and buttons.  
-(archive)Last update: Authorization and Registration was added.  
 (archive)Last update: Roles, custom login/logout pages. A bit of javascript code.  
+(archive)Last update: Authorization and Registration was added.  
 Registration page:  
 ![реги](https://user-images.githubusercontent.com/97405800/170830268-51bfab88-d86a-42d3-af11-ff06859f928f.jpg)  
 This is main page : 
