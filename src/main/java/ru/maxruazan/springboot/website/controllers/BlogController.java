@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.maxruazan.springboot.website.models.Post;
-import ru.maxruazan.springboot.website.models.User;
+import ru.maxruazan.springboot.website.models.MyUser;
 import ru.maxruazan.springboot.website.repos.PostRepository;
 
 
@@ -39,22 +39,19 @@ public class BlogController {
     }
 
 
-    @PreAuthorize("hasRole('USER_ROLE') AND hasRole('ADMIN_ROLE')")
+    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
     @GetMapping("/blog/add")
     public  String blogAdd(){
         return "blog-add";
     }
 
-    @PreAuthorize("hasRole('USER_ROLE') AND hasRole('ADMIN_ROLE')")
+    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
     @PostMapping("/blog/add")
     public String blogPostAdd(@RequestParam String title,
                               @RequestParam String anons,
-                              @RequestParam String full_text,
-                              @AuthenticationPrincipal User user) {
-        if(user.getRoles().toString().equals("USER")) {
+                              @RequestParam String full_text) {
             Post post = new Post(title, anons, full_text);
             postRepository.save(post);
-        }
         return "redirect:/blog";
     }
 
@@ -67,7 +64,7 @@ public class BlogController {
         return "blog-details";
     }
 
-    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
+   @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
     @GetMapping("/blog/{id}/edit")
     public String editDetails(@PathVariable long id, Model model) {
         if(!postRepository.existsById(id)) {
@@ -92,7 +89,7 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @PreAuthorize("hasRole('ADMIN_ROLE')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/blog/{id}/remove")
     public String deletePost(@PathVariable long id) {
         postRepository.findById(id).ifPresent(post -> postRepository.delete(post));
