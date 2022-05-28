@@ -1,4 +1,4 @@
-# web-site
+# web_blog
 Personal blog creating with Bootstrap. Minimum front features.  
 Stack : Spring: Boot, MVC, Security. Bootstrap sample, Thymeleaf template engine, Html. Data Base - MySQL.  
 Next update: Admins table with users, roles and buttons.  
