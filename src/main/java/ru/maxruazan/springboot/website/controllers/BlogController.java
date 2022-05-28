@@ -39,13 +39,13 @@ public class BlogController {
     }
 
 
-    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/blog/add")
     public  String blogAdd(){
         return "blog-add";
     }
 
-    @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/blog/add")
     public String blogPostAdd(@RequestParam String title,
                               @RequestParam String anons,
@@ -64,7 +64,7 @@ public class BlogController {
         return "blog-details";
     }
 
-   @PreAuthorize("hasRole('USER') AND hasRole('ADMIN')")
+   @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/blog/{id}/edit")
     public String editDetails(@PathVariable long id, Model model) {
         if(!postRepository.existsById(id)) {
