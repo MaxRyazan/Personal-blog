@@ -1,8 +1,6 @@
 # web-site
 Personal blog creating with Bootstrap. Minimum front features.  
-Stack : Spring: Boot, MVC, Security.  
-Bootstrap sample, Thymeleaf template engine, Html.  
-Data Base - MySQL.  
+Stack : Spring: Boot, MVC, Security. Bootstrap sample, Thymeleaf template engine, Html. Data Base - MySQL.  
 Last update: Authorization and Registration was added.  
 Last update: Roles, custom login/logout pages. A bit of javascript code.  
 This is main page : 
@@ -13,12 +11,12 @@ Add new post ? Click "Добавить статью" See this :
 
 Want to see more details and full-post-text? Click "Детальнее" :
 ![333](https://user-images.githubusercontent.com/97405800/169416517-fbd7fcf6-8887-4b62-817a-d6d61bb149c0.jpg)
-
-UPD:
-Added attributes to buttons (isAuthorize(), hasRole() etc) for more "user-friendly" interface.
-Added service class, extracted logic from controllers.
-Added some pages for convenience.
-Some visual fixes.
-
-UPD:
-Added enum Role, added guest enter. Optimized class structure.
+  
+UPD:  
+Added attributes to buttons (isAuthorize(), hasRole() etc) for more "user-friendly" interface.  
+Added service class, extracted logic from controllers.  
+Added some pages for convenience.  
+Some visual fixes.  
+  
+UPD:  
+Added enum Role, added guest enter. Optimized class structure.  
