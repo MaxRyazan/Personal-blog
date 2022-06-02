@@ -9,15 +9,15 @@
         <h3 th:text="${element.title}"></h3>
         <p th:text="${element.full_text}"></p>
 <!--        <p><b>Просмотры:</b> <span th:text="${element.views}"></span></p>-->
-        <div sec:authorize="isAuthenticated()">
-                 <a th:href="'/blog/' + ${element.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-         </div>
-        <br>
-         <div sec:authorize="hasRole('ADMIN')">
-                 <a th:href="'/blog/' + ${element.id} + '/remove'" class="btn btn-warning">Удалить</a>
-         </div>
-        <br>
-        <input type="button" value="Назад" onclick="history.back()" class="btn btn-warning">
+        <div>
+        <label sec:authorize="isAuthenticated()">
+                 <a th:href="'/blog/' + ${element.id} + '/edit'" class="btn btn-success">Редактировать</a>
+         </label>
+         <label sec:authorize="hasRole('ADMIN')">
+                 <a th:href="'/blog/' + ${element.id} + '/remove'" class="btn btn-success">Удалить</a>
+         </label>
+        <input type="button" value="Назад" onclick="history.back()" class="btn btn-success">
+    </div>
     </div>
 </div>
 <footer th:insert="blocks/footer"></footer>

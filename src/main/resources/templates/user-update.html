@@ -27,6 +27,9 @@
         margin-left: 50px; /* Отступы слева элемента */
         display: inline;
     }
+    .background {
+        background: #e33001;
+    }
 </style>
 <body>
 <form action="#"
@@ -35,16 +38,16 @@
       method="post">
     <table>
         <tr>
-            <td><label for="status">Id</label></td>
-            <td><input readonly type="number" th:field="*{id}" id="id"></td>
+            <td><label for="id">Id</label></td>
+            <td><input readonly type="number" th:field="*{id}" id="id" class="background"></td>
         </tr>
         <tr>
-            <td><label for="status">Почта</label></td>
-            <td><input readonly type="text" th:field="*{email}" id="email"></td>
+            <td><label for="email">Почта</label></td>
+            <td><input readonly type="text" th:field="*{email}" id="email" class="background"></td>
         </tr>
         <tr>
-            <td><label for="status">Пароль</label></td>
-            <td><input readonly type="text" th:field="*{password}" id="password"></td>
+            <td><label for="password">Пароль</label></td>
+            <td><input readonly type="text" th:field="*{password}" id="password" class="background"></td>
         <tr>
             <td><label for="role">Роль</label></td>
             <td><input type="text" th:field="*{role}" id="role" placeholder="роль"></td>
