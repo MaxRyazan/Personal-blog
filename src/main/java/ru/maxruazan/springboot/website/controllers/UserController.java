@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.maxruazan.springboot.website.models.MyUser;
+import ru.maxruazan.springboot.website.models.Status;
 import ru.maxruazan.springboot.website.service.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String newUser(){
+    public String newUser(MyUser myUser){
         return "user-new";
     }
 
@@ -48,8 +49,9 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@RequestParam String email,
-                               @RequestParam String password) {
-        if(userService.registration(email, password)) {
+                               @RequestParam String password,
+                               @RequestParam Status status) {
+        if(userService.registration(email, password, status)) {
                 return "user-successes";
             } else  {
             return "/registration";

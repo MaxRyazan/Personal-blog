@@ -7,9 +7,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.maxruazan.springboot.website.models.MyUser;
 import ru.maxruazan.springboot.website.models.Role;
+import ru.maxruazan.springboot.website.models.Status;
 import ru.maxruazan.springboot.website.repos.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -33,24 +35,41 @@ public class UserService {
         MyUser authUser = userRepository.findByEmail(email);
         if (authUser == null) {
             user.setRole(Role.USER);
-            userRepository.save(user);
+            user.setStatus(Status.ACTIVE);
+            save(user);
             return   true;
         } else {
             return   false;
         }
     }
-
-    public boolean registration(String email, String password) {
+    public boolean registration(String email, String password, Status status) {
         MyUser user = userRepository.findByEmail(email);
-        return (user != null) && (user.getPassword().equals(passwordEncoder.encode(password)));
+        if (user != null && user.getStatus().equals(Status.ACTIVE)) {
+            return (user.getPassword().equals(passwordEncoder.encode(password)));
+        }
+        return false;
     }
-
     public boolean logout(HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             request.getSession().invalidate();
         }
         return true;
+    }
+    public void save(MyUser myUser) {
+        userRepository.save(myUser);
+    }
+    public  <S extends MyUser> S saveAndFlush(S entity){
+      return   userRepository.saveAndFlush(entity);
+    }
+    public MyUser findById(long id){
+        return userRepository.findById(id).orElse(null);
+    }
+    public List<MyUser> findAll(){
+        return  userRepository.findAll();
+    }
+    public void deleteById(long id){
+        userRepository.deleteById(id);
     }
 
 }

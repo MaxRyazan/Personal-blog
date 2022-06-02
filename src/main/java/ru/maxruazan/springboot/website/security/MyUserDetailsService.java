@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.maxruazan.springboot.website.models.MyUser;
+import ru.maxruazan.springboot.website.models.Status;
 import ru.maxruazan.springboot.website.repos.UserRepository;
 
 @Service
@@ -22,8 +23,8 @@ public class MyUserDetailsService  implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         MyUser myUser = userRepository.findByEmail(email);
-        if(myUser==null) {
-            throw  new UsernameNotFoundException("User not found");
+        if(myUser==null || myUser.getStatus().equals(Status.BANNED)) {
+            throw  new UsernameNotFoundException("User not found or banned");
         }
 
         UserDetails user = User.builder()

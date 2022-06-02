@@ -1,0 +1,65 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:form="http://www.springframework.org/tags/form" xmlns="http://www.w3.org/1999/html">
+<head th:insert="blocks/head"><title></title></head>
+<header th:insert="blocks/header"></header>
+<style type="text/css">
+    TABLE {
+        width: 300px; /* Ширина таблицы */
+        border-collapse: collapse; /* Убираем двойные линии между ячейками */
+        margin-left: 30px;
+    }
+
+    TD, TH {
+
+        padding: 5px; /* Поля вокруг содержимого таблицы */
+        border: 0px solid white; /* Параметры рамки */
+    }
+
+    TH {
+        background: #b0e0e6; /* Цвет фона */
+    }
+</style>
+<style>
+    body {
+    }
+
+    .first {
+        margin-left: 50px; /* Отступы слева элемента */
+        display: inline;
+    }
+</style>
+<body>
+<form action="#"
+      th:action="@{/admin/users/user-update}"
+      th:object="${myUser}"
+      method="post">
+    <table>
+        <tr>
+            <td><label for="status">Id</label></td>
+            <td><input readonly type="number" th:field="*{id}" id="id"></td>
+        </tr>
+        <tr>
+            <td><label for="status">Почта</label></td>
+            <td><input readonly type="text" th:field="*{email}" id="email"></td>
+        </tr>
+        <tr>
+            <td><label for="status">Пароль</label></td>
+            <td><input readonly type="text" th:field="*{password}" id="password"></td>
+        <tr>
+            <td><label for="role">Роль</label></td>
+            <td><input type="text" th:field="*{role}" id="role" placeholder="роль"></td>
+        </tr>
+        <tr>
+            <td><label for="status">Статус</label></td>
+            <td><input type="text" th:field="*{status}" id="status" placeholder="статус"></td>
+        </tr>
+    </table>
+    <br><br>
+    <div class="first">
+        <input type="submit" value="Сохранить" class="btn btn-success"/>
+        <input type="button" value="Назад" onclick="history.back()" class="btn btn-success">
+    </div>
+</form>
+</body>
+<footer th:insert="blocks/footer"></footer>
+</html>

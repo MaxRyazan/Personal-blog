@@ -15,8 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -27,6 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/blog/add", "/blog/{id}/edit").hasAnyRole("USER", "ADMIN")
 				.antMatchers(HttpMethod.POST, "/blog/add", "/blog/{id}/edit").hasAnyRole("USER", "ADMIN")
 				.antMatchers("/blog/{id}/remove").hasRole("ADMIN")
+				.antMatchers(HttpMethod.GET,"/admin/**").hasRole("ADMIN")
+				.antMatchers(HttpMethod.POST,"/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
 					.and()
 				.formLogin()
