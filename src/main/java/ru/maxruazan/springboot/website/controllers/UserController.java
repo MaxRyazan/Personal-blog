@@ -49,9 +49,8 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@RequestParam String email,
-                               @RequestParam String password,
-                               @RequestParam Status status) {
-        if(userService.registration(email, password, status)) {
+                               @RequestParam String password) {
+        if(userService.registration(email, password)) {
                 return "user-successes";
             } else  {
             return "/registration";

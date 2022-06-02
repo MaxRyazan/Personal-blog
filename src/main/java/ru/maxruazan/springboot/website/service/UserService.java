@@ -42,9 +42,9 @@ public class UserService {
             return   false;
         }
     }
-    public boolean registration(String email, String password, Status status) {
+    public boolean registration(String email, String password) {
         MyUser user = userRepository.findByEmail(email);
-        if (user != null && user.getStatus().equals(Status.ACTIVE)) {
+        if (user != null) {
             return (user.getPassword().equals(passwordEncoder.encode(password)));
         }
         return false;
