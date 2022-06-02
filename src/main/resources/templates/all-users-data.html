@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:insert="blocks/head"><title></title></head>
 <header th:insert="blocks/header"></header>
+<style>
+    .colortext {
+        color: #ffffff; /* Цвет текста */
+    }
+</style>
 <style type="text/css" >
     TABLE {
         width: 1300px; /* Ширина таблицы */
@@ -14,7 +19,7 @@
         border: 1px solid black; /* Параметры рамки */
     }
     TH {
-        background: #b0e0e6; /* Цвет фона */
+        background: #4c8cff; /* Цвет фона */
     }
 </style>
 <style>
@@ -26,12 +31,12 @@
 <body>
 <table>
     <tr align="center">
-        <th width="70 px;"><h4>ID</h4></th>
-        <th width="300 px;"><h4>EMail</h4></th>
-        <th width="300 px;"><h4>Password</h4></th>
-        <th width="150 px;"><h4>Role</h4></th>
-        <th width="150 px;"><h4>Status</h4></th>
-        <th width="330 px;"><h4>Operations</h4></th>
+        <th width="70 px;" class="colortext">ID</th>
+        <th width="300 px;" class="colortext">eMail</th>
+        <th width="300 px;" class="colortext">Password</th>
+        <th width="150 px;" class="colortext">Role</th>
+        <th width="150 px;" class="colortext">Status</th>
+        <th width="330 px;" class="colortext">Operations</th>
     </tr>
     <tr th:each="thisUser : ${allUsers}">
         <td align="center" th:text="${thisUser.id}"></td>
@@ -41,8 +46,8 @@
         <td align="center" th:text="${thisUser.status}"></td>
         <td align="center">
 
-          <a th:href="@{/admin/users/edit/{id}(id=${thisUser.id})}">Редактировать</a>
-          <a th:href="@{/admin/users/delete/{id}(id=${thisUser.id})}">Удалить</a>
+          <a class="btn btn-secondary btn-sm" th:href="@{/admin/users/edit/{id}(id=${thisUser.id})}">Редактировать</a>
+          <a class="btn btn-secondary btn-sm" th:href="@{/admin/users/delete/{id}(id=${thisUser.id})}">Удалить</a>
 
         </td>
 
@@ -50,8 +55,8 @@
 </table>
 <br><br>
 <div class="first">
-<input type="button" value="Добавить пользователя" onclick="window.location.href='/user/new'"/>
-<input type="button" value="Назад" onclick="history.back()">
+<input class="btn btn-primary btn-sm" type="button" value="Добавить пользователя" onclick="window.location.href='/user/new'"/>
+<input class="btn btn-secondary btn-sm" type="button" value="Назад" onclick="history.back()">
 </div>
 </body>
 <footer th:insert="blocks/footer"></footer>
