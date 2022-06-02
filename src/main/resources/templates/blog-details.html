@@ -8,11 +8,14 @@
     <div th:each="element : ${post}" class="alert alert-info mt-2">
         <h3 th:text="${element.title}"></h3>
         <p th:text="${element.full_text}"></p>
-        <p><b>Просмотры:</b> <span th:text="${element.views}"></span></p>
+<!--        <p><b>Просмотры:</b> <span th:text="${element.views}"></span></p>-->
         <div sec:authorize="isAuthenticated()">
-        <a th:href="'/blog/' + ${element.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a th:href="'/blog/' + ${element.id} + '/remove'" class="btn btn-warning">Удалить</a>
-            </div>
+                 <a th:href="'/blog/' + ${element.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+         </div>
+        <br>
+         <div sec:authorize="hasRole('ADMIN')">
+                 <a th:href="'/blog/' + ${element.id} + '/remove'" class="btn btn-warning">Удалить</a>
+         </div>
         <br>
         <input type="button" value="Назад" onclick="history.back()" class="btn btn-warning">
     </div>
