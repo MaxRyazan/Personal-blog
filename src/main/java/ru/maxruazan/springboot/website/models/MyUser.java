@@ -19,12 +19,10 @@ public class MyUser {
     private long id;
 
     @NonNull
-    @Pattern(regexp = "\\w+@\\w+\\.\\w+", message = "{0-9}{a-z}{а-я} + '@.' + {0-9}{a-z}{а-я}")
     @Column(name = "email")
     private String email;
 
     @NonNull
-    @Size(min = 3, max = 30, message = "Пароль должен быть длинной от 3 до 30 символов.")
     @Column(name = "password")
     private String password;
 

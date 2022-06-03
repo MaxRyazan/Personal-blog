@@ -8,8 +8,11 @@
 <div class="container mt-5">
     <h2>Регистрация</h2>
     <form name="f" th:action="@{/user/new}" method="post">
-        <input type="text" name="email" placeholder="Введите мейл" class="form-control"><br>
-        <input type="text" name="password" placeholder="Введите пароль" class="form-control"><br>
+        <input type="email" name="email" placeholder="Введите мейл" class="form-control"
+               required pattern="^[A-Za-z0-9+_.-]+@(.+)$">
+        <br>
+        <input type="text" name="password" placeholder="Введите пароль" class="form-control"
+               required minlength="3" maxlength="30"><br>
         <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
         <br><br>
         <button type="submit" class="btn btn-success">Продолжить</button>
