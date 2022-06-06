@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+
 <html xmlns:th="http://thymeleaf.org">
 <head th:insert="blocks/head"><title>Главный блог</title></head>
-<body>
 <header th:insert="blocks/header"></header>
+<body>
 <div class="container mt-5">
     <h2>Добавление статьи</h2>
     <form name="f" th:action="@{/blog/add}" method="post">

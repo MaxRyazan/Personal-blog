@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.maxruazan.springboot.website.models.MyUser;
-import ru.maxruazan.springboot.website.models.Status;
 import ru.maxruazan.springboot.website.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String newUser(MyUser myUser){
+    public String newUser(){
         return "user-new";
     }
 

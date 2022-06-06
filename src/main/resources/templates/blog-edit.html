@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head th:insert="blocks/head"><title></title></head>
-<body>
 <header th:insert="blocks/header"></header>
-
+<body>
 <div class="container mt-5">
     <h2>Редактирование статьи</h2>
-    <div th:each="element : ${post}">
-    <form  method="post">
+    <form name="#" th:action="@{/blog/blog-edit}" method="post">
+            <div th:each="element : ${post}">
+         <input type="hidden" name="id" th:value="${element.id}" />
         <input type="text" name="title" th:value="${element.title}" placeholder="Введите название статьи" class="form-control"><br>
         <input type="text" name="anons" th:value="${element.anons}" placeholder="Описание статьи" class="form-control"><br>
         <textarea name="full_text"  placeholder="Введите полный текст статьи" class="form-control" th:text="${element.full_text}"></textarea>
         <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
         <br><br>
         <button type="submit" class="btn btn-success">Обновить статью</button>
+             </div>
     </form>
-</div>
 </div>
 
 

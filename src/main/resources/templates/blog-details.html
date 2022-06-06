@@ -8,7 +8,6 @@
     <div th:each="element : ${post}" class="alert alert-info mt-2">
         <h3 th:text="${element.title}"></h3>
         <p th:text="${element.full_text}"></p>
-<!--        <p><b>Просмотры:</b> <span th:text="${element.views}"></span></p>-->
         <div>
         <label sec:authorize="isAuthenticated()">
                  <a th:href="'/blog/' + ${element.id} + '/edit'" class="btn btn-success">Редактировать</a>
